@@ -1,0 +1,116 @@
+# ============================================
+# .gitignore pour Projet Répartition Classes
+# ============================================
+
+# ========== FICHIERS SENSIBLES ==========
+# Ajoutez ici vos fichiers avec données réelles
+# DonneesReelles.js
+# *PROD*.js
+# *PRODUCTION*.js
+*_PRIVATE*.js
+*_SECRET*.js
+*.env
+.env.local
+credentials.json
+
+# ========== BACKUPS ET TEMPORAIRES ==========
+*_BACKUP_*.html
+*_BACKUP_*.js
+*_OLD_*.js
+*_TEMP_*.js
+_DELETED/
+_BACKUP/
+backup/
+temp/
+
+# ========== FICHIERS SYSTÈME ==========
+# Windows
+Thumbs.db
+desktop.ini
+*.lnk
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.directory
+
+# ========== LOGS ET DEBUG ==========
+*.log
+logs/
+debug/
+*.stackdump
+
+# ========== NODE MODULES (si utilisé) ==========
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ========== IDE ==========
+# VSCode
+.vscode/
+*.code-workspace
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# ========== BUILD ET DIST ==========
+dist/
+build/
+*.min.js
+*.min.css
+
+# ========== DONNÉES GOOGLE SHEETS ==========
+# Ne PAS uploader les exports avec données réelles
+*_export_*.xlsx
+*_export_*.csv
+CONSOLIDATION_*.xlsx
+BILAN_*.xlsx
+
+# ========== DOCUMENTATION GÉNÉRÉE ==========
+# Garder uniquement les MD sources
+*.pdf
+*.docx
+
+# ========== FICHIERS DE TEST AVEC DONNÉES RÉELLES ==========
+# Décommenter si vous avez des données réelles
+# DonneesTest.js (si contient données réelles)
+# TestInterfaceV2.js (si contient données réelles)
+
+# ========== SCRIPTS LOCAUX ==========
+# Scripts spécifiques à votre environnement
+# clean_project.bat (si vous voulez le garder local)
+# prepare_*.bat (si vous voulez le garder local)
+
+# ========== KEEP THESE ==========
+# Les fichiers suivants DOIVENT être inclus dans Git
+# !Config.js (même avec admin123, c'est un mot de passe par défaut)
+# !InterfaceV2.html
+# !BackendV2.js
+# !Menu.js
+# !README.md
+# !AUDIT_FINAL.md
+# !docs/
+
+# ========== NOTES ==========
+# Ce .gitignore protège :
+# ✅ Les données sensibles
+# ✅ Les backups locaux
+# ✅ Les fichiers système
+# ✅ Les logs et debug
+#
+# Il autorise :
+# ✅ Le code source
+# ✅ La documentation
+# ✅ La configuration par défaut (admin123 est OK)
+# ✅ Les fichiers de test avec données fictives

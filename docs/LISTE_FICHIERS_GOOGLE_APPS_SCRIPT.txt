@@ -1,0 +1,179 @@
+═══════════════════════════════════════════════════════════════
+  LISTE DES FICHIERS À INSÉRER DANS GOOGLE APPS SCRIPT
+═══════════════════════════════════════════════════════════════
+
+🗑️ SUPPRIMER CES 5 FICHIERS NIRVANA :
+───────────────────────────────────────────────────────────────
+Nirvana_Combined_Orchestrator.js
+nirvana_parity_combined.js
+NIRVANA_SCORES_EQUILIBRAGEV1.2.js
+Nirvana_V2_Amelioree.js
+NIRVANATESTV2.js
+
+✅ AJOUTER CES 6 FICHIERS CLAUDEMOTOR (avec nouveaux noms) :
+───────────────────────────────────────────────────────────────
+ClaudeMotor_Utils_Calculators.gs         ← claudemotor/utils/calculators.js
+ClaudeMotor_Utils_Validators.gs          ← claudemotor/utils/validators.js
+ClaudeMotor_Core.gs                      ← claudemotor/core/ClaudeMotor.js
+ClaudeMotor_Algorithm_ParityCorrector.gs ← claudemotor/algorithms/ParityCorrector.js
+ClaudeMotor_Algorithm_ScoresBalancer.gs  ← claudemotor/algorithms/ScoresBalancer.js
+ClaudeMotor_UI_Orchestrator.gs           ← claudemotor/ui/Orchestrator.js
+
+═══════════════════════════════════════════════════════════════
+  ORDRE D'INSERTION DES 58 FICHIERS (par catégorie)
+═══════════════════════════════════════════════════════════════
+
+📦 CONFIGURATION (4 fichiers)
+───────────────────────────────────────────────────────────────
+appsscript.json
+Config.js
+Initialisation.js
+Structure.js
+
+🛠️ UTILITAIRES (3 fichiers)
+───────────────────────────────────────────────────────────────
+Utils.js
+ClaudeMotor_Utils_Calculators.gs
+ClaudeMotor_Utils_Validators.gs
+
+💾 BACKEND (4 fichiers)
+───────────────────────────────────────────────────────────────
+BackendV2.js
+ElevesBackendV2.js
+groupsBackend.js
+DonneesTest.js
+
+🧮 ALGORITHMES (10 fichiers)
+───────────────────────────────────────────────────────────────
+ClaudeMotor_Core.gs
+ClaudeMotor_Algorithm_ParityCorrector.gs
+ClaudeMotor_Algorithm_ScoresBalancer.gs
+Phase1a_OPT.js
+Phase1b_CODES.js
+Phase1c_PARITE.js
+Phase4_Optimisation.gs.js
+Phase5.V12.js
+Pipeline_Variante_Scores.js
+
+🎯 ORCHESTRATION (3 fichiers)
+───────────────────────────────────────────────────────────────
+ClaudeMotor_UI_Orchestrator.gs
+ConsolePrincipale.js
+Menu.js
+
+🎨 INTERFACES HTML (13 fichiers)
+───────────────────────────────────────────────────────────────
+InterfaceV2.html
+Console.html
+groupsUI.html
+groupsInterface.html
+groupsModuleV2.html
+groupsStyles.html
+ConfigurationComplete.html
+StructureConfig.html
+StatistiquesDashboard.html
+ReservationUI.html
+FinilisationUI.html
+CreationDialog.html
+interface_deplacement.html
+
+🔄 MODULES COMPLÉMENTAIRES (16 fichiers)
+───────────────────────────────────────────────────────────────
+ImportScoresManager.js
+Reequilibrer_Effectifs_Force.js
+GenereNOMprenomID.js
+InitMobilite.js
+ListesDeroulantes.js
+MiseEnFormeDEF.js
+Presentation.js
+Script_Reservation.js
+StatsD.js
+Consolidation.js
+FeuillesProfesseurs.js
+CodeReser.js
+COMPTER.js
+Interface Swap Eleve.js
+UtilsPhase4.js
+zz_Patch_Charger_SEXE_Complet.js
+
+🧪 TESTS (6 fichiers - optionnels)
+───────────────────────────────────────────────────────────────
+DIAGNOSTIC.js
+Tests.js
+test_Utils.js
+TestEvelesModule.js
+TestInterfaceV2.js
+DIVERS.TEST.js
+
+═══════════════════════════════════════════════════════════════
+  CONFIGURATIONS RECOMMANDÉES
+═══════════════════════════════════════════════════════════════
+
+🎯 MINIMUM VIABLE (12 fichiers) :
+───────────────────────────────────────────────────────────────
+Config.js
+Initialisation.js
+Utils.js
+BackendV2.js
+ClaudeMotor_Core.gs
+ClaudeMotor_Utils_Calculators.gs
+ClaudeMotor_Utils_Validators.gs
+ClaudeMotor_Algorithm_ParityCorrector.gs
+ClaudeMotor_Algorithm_ScoresBalancer.gs
+ClaudeMotor_UI_Orchestrator.gs
+Menu.js
+InterfaceV2.html
+
+⭐ STANDARD (36 fichiers) :
+───────────────────────────────────────────────────────────────
+Configuration + Utilitaires + Backend + Algorithmes + Orchestration + Interfaces HTML
+
+🔥 COMPLET (58 fichiers) :
+───────────────────────────────────────────────────────────────
+Tout inclus (avec modules complémentaires et tests)
+
+═══════════════════════════════════════════════════════════════
+  FICHIERS À NE PAS UPLOADER DANS GOOGLE APPS SCRIPT
+═══════════════════════════════════════════════════════════════
+
+❌ Documentation Markdown (.md)
+───────────────────────────────────────────────────────────────
+README.md
+AUDIT_REPORT.md
+IMPROVEMENTS.md
+ARCHITECTURE_MODULAIRE.md
+EXEMPLES_ARCHITECTURE.md
+GUIDE_MIGRATION.md
+MODULARISATION_RESUME.md
+README_MODULARISATION.md
+TEST_ARCHITECTURE.md
+GUIDE_INSERTION_GOOGLE_APPS_SCRIPT.md
+
+❌ Dossiers de structure locale
+───────────────────────────────────────────────────────────────
+/algorithms
+/claudemotor
+/core
+/docs
+/tests
+/ui
+/utils
+
+⚠️ Ces dossiers et fichiers sont uniquement pour l'organisation locale.
+   Google Apps Script ne supporte pas les sous-dossiers.
+
+═══════════════════════════════════════════════════════════════
+  NOTES IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+1. ⚠️ Renommer les fichiers ClaudeMotor avec les nouveaux noms
+2. ✅ Respecter l'ordre d'insertion (dépendances)
+3. 🧪 Tester après chaque groupe de fichiers
+4. 💾 Sauvegarder régulièrement
+5. 📋 InterfaceV2.html contient TOUTES les améliorations (429 KB)
+
+═══════════════════════════════════════════════════════════════
+Date : 6 octobre 2025
+Version : 1.0
+Statut : ✅ Validé
+═══════════════════════════════════════════════════════════════
