@@ -1,6 +1,6 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════
- *                    JULESMOTOR - VALIDATORS MODULE
+ *                    CLAUDEMOTOR - VALIDATORS MODULE
  * ═══════════════════════════════════════════════════════════════════════
  *
  * Gestion centralisée de toutes les validations et contraintes
@@ -11,7 +11,7 @@
 
 'use strict';
 
-const JulesMotorValidators = (function(global) {
+const ClaudeMotorValidators = (function(global) {
 
   // ═══════════════════════════════════════════════════════════════════════
   // MOBILITÉ
@@ -62,9 +62,7 @@ const JulesMotorValidators = (function(global) {
 
       case MOBILITY_TYPES.CONDI:
         const codeDisso = eleve.DISSO;
-        // BUG #1 FIX: La condition était trop stricte (startsWith('D')).
-        // N'importe quel code non-vide est maintenant valide.
-        if (codeDisso) {
+        if (codeDisso && codeDisso.startsWith('D')) {
           return {
             allowed: true,
             type: 'CONDI',
@@ -230,7 +228,7 @@ const JulesMotorValidators = (function(global) {
     // 2. Vérifier contraintes spécifiques selon type de mobilité
     if (mobility1.allowed && mobility2.allowed) {
       // PERMUT: LV2 et OPT doivent correspondre
-      if (mobility1.type === 'PERMUT' || mobility2.type === 'PERMUT') {
+      if (mobility1.condition === 'LV2_OPT_MATCH' || mobility2.condition === 'LV2_OPT_MATCH') {
         if (eleve1.LV2 !== eleve2.LV2 || eleve1.OPT !== eleve2.OPT) {
           valid = false;
           checks.push({
@@ -241,9 +239,8 @@ const JulesMotorValidators = (function(global) {
         }
       }
 
-      // BUG #2 FIX: La logique ne s'applique que si les DEUX élèves sont CONDI.
-      // Un CONDI peut échanger avec un LIBRE sans contrainte de code DISSO.
-      if (mobility1.type === 'CONDI' && mobility2.type === 'CONDI') {
+      // CONDI: codes DISSO doivent correspondre
+      if (mobility1.condition?.startsWith('DISSO_') || mobility2.condition?.startsWith('DISSO_')) {
         if (eleve1.DISSO !== eleve2.DISSO) {
           valid = false;
           checks.push({
@@ -395,7 +392,7 @@ const JulesMotorValidators = (function(global) {
     validateGroupSwap
   };
 
-  global.JulesMotorValidators = API;
+  global.ClaudeMotorValidators = API;
   return API;
 
 })(typeof globalThis !== 'undefined' ? globalThis : this);

@@ -1,86 +1,179 @@
 ═══════════════════════════════════════════════════════════════
   LISTE DES FICHIERS À INSÉRER DANS GOOGLE APPS SCRIPT
-  Version 2.0 (JulesMotor)
 ═══════════════════════════════════════════════════════════════
 
-✅ FICHIERS À AJOUTER (après nettoyage)
-
-I. MOTEUR JULESMOTOR (6 fichiers)
-   (Générés par prepare_julesmotor_for_google_apps_script.bat)
+🗑️ SUPPRIMER CES 5 FICHIERS NIRVANA :
 ───────────────────────────────────────────────────────────────
-JulesMotor_Core.gs                      ← julesmotor/core/JulesMotor.js
+Nirvana_Combined_Orchestrator.js
+nirvana_parity_combined.js
+NIRVANA_SCORES_EQUILIBRAGEV1.2.js
+Nirvana_V2_Amelioree.js
+NIRVANATESTV2.js
+
+✅ AJOUTER CES 6 FICHIERS JULESMOTOR (avec nouveaux noms) :
+───────────────────────────────────────────────────────────────
 JulesMotor_Utils_Calculators.gs         ← julesmotor/utils/calculators.js
 JulesMotor_Utils_Validators.gs          ← julesmotor/utils/validators.js
+JulesMotor_Core.gs                      ← julesmotor/core/ClaudeMotor.js
 JulesMotor_Algorithm_ParityCorrector.gs ← julesmotor/algorithms/ParityCorrector.js
 JulesMotor_Algorithm_ScoresBalancer.gs  ← julesmotor/algorithms/ScoresBalancer.js
 JulesMotor_UI_Orchestrator.gs           ← julesmotor/ui/Orchestrator.js
 
-II. CORE APPLICATION (6 fichiers)
-   (Source : core/)
-───────────────────────────────────────────────────────────────
-Config.js
-BackendV2.js
-Menu.js
-Utils.js
-Initialisation.js
-groupsBackend.js
+═══════════════════════════════════════════════════════════════
+  ORDRE D'INSERTION DES 58 FICHIERS (par catégorie)
+═══════════════════════════════════════════════════════════════
 
-III. INTERFACE UTILISATEUR (8 fichiers)
-    (Source : ui/)
+📦 CONFIGURATION (4 fichiers)
+───────────────────────────────────────────────────────────────
+appsscript.json
+Config.js
+Initialisation.js
+Structure.js
+
+🛠️ UTILITAIRES (3 fichiers)
+───────────────────────────────────────────────────────────────
+Utils.js
+JulesMotor_Utils_Calculators.gs
+JulesMotor_Utils_Validators.gs
+
+💾 BACKEND (4 fichiers)
+───────────────────────────────────────────────────────────────
+BackendV2.js
+ElevesBackendV2.js
+groupsBackend.js
+DonneesTest.js
+
+🧮 ALGORITHMES (10 fichiers)
+───────────────────────────────────────────────────────────────
+JulesMotor_Core.gs
+JulesMotor_Algorithm_ParityCorrector.gs
+JulesMotor_Algorithm_ScoresBalancer.gs
+Phase1a_OPT.js
+Phase1b_CODES.js
+Phase1c_PARITE.js
+Phase4_Optimisation.gs.js
+Phase5.V12.js
+Pipeline_Variante_Scores.js
+
+🎯 ORCHESTRATION (3 fichiers)
+───────────────────────────────────────────────────────────────
+JulesMotor_UI_Orchestrator.gs
+ConsolePrincipale.js
+Menu.js
+
+🎨 INTERFACES HTML (13 fichiers)
 ───────────────────────────────────────────────────────────────
 InterfaceV2.html
-ConfigurationComplete.html
 Console.html
+groupsUI.html
 groupsInterface.html
 groupsModuleV2.html
 groupsStyles.html
-groupsUI.html
+ConfigurationComplete.html
+StructureConfig.html
+StatistiquesDashboard.html
+ReservationUI.html
+FinilisationUI.html
+CreationDialog.html
 interface_deplacement.html
 
-═══════════════════════════════════════════════════════════════
-  ORDRE D'INSERTION RECOMMANDÉ
-═══════════════════════════════════════════════════════════════
-
-1.  **Fichiers CORE** (dans n'importe quel ordre)
-    -   Config.js, BackendV2.js, Menu.js, etc.
-
-2.  **Fichiers JULESMOTOR** (respecter cet ordre pour les dépendances)
-    -   JulesMotor_Utils_Validators.gs
-    -   JulesMotor_Utils_Calculators.gs
-    -   JulesMotor_Algorithm_ScoresBalancer.gs
-    -   JulesMotor_Algorithm_ParityCorrector.gs
-    -   JulesMotor_Core.gs
-    -   JulesMotor_UI_Orchestrator.gs
-
-3.  **Fichiers UI** (InterfaceV2.html en dernier)
-    -   Tous les fichiers .html
-
-═══════════════════════════════════════════════════════════════
-  FICHIERS OBSOLÈTES (à supprimer si présents)
-═══════════════════════════════════════════════════════════════
-
-❌ Fichiers Nirvana
+🔄 MODULES COMPLÉMENTAIRES (16 fichiers)
 ───────────────────────────────────────────────────────────────
-Nirvana_Combined_Orchestrator.js, nirvana_parity_combined.js, etc.
+ImportScoresManager.js
+Reequilibrer_Effectifs_Force.js
+GenereNOMprenomID.js
+InitMobilite.js
+ListesDeroulantes.js
+MiseEnFormeDEF.js
+Presentation.js
+Script_Reservation.js
+StatsD.js
+Consolidation.js
+FeuillesProfesseurs.js
+CodeReser.js
+COMPTER.js
+Interface Swap Eleve.js
+UtilsPhase4.js
+zz_Patch_Charger_SEXE_Complet.js
 
-❌ Anciens fichiers "Phase"
+🧪 TESTS (6 fichiers - optionnels)
 ───────────────────────────────────────────────────────────────
-Phase1a_OPT.js, Phase1b_CODES.js, Phase4_Optimisation.gs.js, etc.
+DIAGNOSTIC.js
+Tests.js
+test_Utils.js
+TestEvelesModule.js
+TestInterfaceV2.js
+DIVERS.TEST.js
 
-❌ Anciens scripts divers
+═══════════════════════════════════════════════════════════════
+  CONFIGURATIONS RECOMMANDÉES
+═══════════════════════════════════════════════════════════════
+
+🎯 MINIMUM VIABLE (12 fichiers) :
 ───────────────────────────────────────────────────────────────
-COMPTER.js, CodeReser.js, ConsolePrincipale.js, UtilsPhase4.js, etc.
+Config.js
+Initialisation.js
+Utils.js
+BackendV2.js
+JulesMotor_Core.gs
+JulesMotor_Utils_Calculators.gs
+JulesMotor_Utils_Validators.gs
+JulesMotor_Algorithm_ParityCorrector.gs
+JulesMotor_Algorithm_ScoresBalancer.gs
+JulesMotor_UI_Orchestrator.gs
+Menu.js
+InterfaceV2.html
+
+⭐ STANDARD (36 fichiers) :
+───────────────────────────────────────────────────────────────
+Configuration + Utilitaires + Backend + Algorithmes + Orchestration + Interfaces HTML
+
+🔥 COMPLET (58 fichiers) :
+───────────────────────────────────────────────────────────────
+Tout inclus (avec modules complémentaires et tests)
+
+═══════════════════════════════════════════════════════════════
+  FICHIERS À NE PAS UPLOADER DANS GOOGLE APPS SCRIPT
+═══════════════════════════════════════════════════════════════
+
+❌ Documentation Markdown (.md)
+───────────────────────────────────────────────────────────────
+README.md
+AUDIT_REPORT.md
+IMPROVEMENTS.md
+ARCHITECTURE_MODULAIRE.md
+EXEMPLES_ARCHITECTURE.md
+GUIDE_MIGRATION.md
+MODULARISATION_RESUME.md
+README_MODULARISATION.md
+TEST_ARCHITECTURE.md
+GUIDE_INSERTION_GOOGLE_APPS_SCRIPT.md
+
+❌ Dossiers de structure locale
+───────────────────────────────────────────────────────────────
+/algorithms
+/julesmotor
+/core
+/docs
+/tests
+/ui
+/utils
+
+⚠️ Ces dossiers et fichiers sont uniquement pour l'organisation locale.
+   Google Apps Script ne supporte pas les sous-dossiers.
 
 ═══════════════════════════════════════════════════════════════
   NOTES IMPORTANTES
 ═══════════════════════════════════════════════════════════════
 
-1.  ✅ Le script `prepare_for_google_apps_script.bat` gère automatiquement le renommage des fichiers JulesMotor.
-2.  ✅ La structure locale du projet utilise maintenant des sous-dossiers (`core/`, `ui/`, `julesmotor/`) pour une meilleure organisation. Ces dossiers ne sont pas créés dans Google Apps Script.
-3.  ✅ Le projet a été significativement nettoyé et restructuré. Le nombre total de fichiers à uploader est réduit.
+1. ⚠️ Renommer les fichiers JulesMotor avec les nouveaux noms
+2. ✅ Respecter l'ordre d'insertion (dépendances)
+3. 🧪 Tester après chaque groupe de fichiers
+4. 💾 Sauvegarder régulièrement
+5. 📋 InterfaceV2.html contient TOUTES les améliorations (429 KB)
 
 ═══════════════════════════════════════════════════════════════
 Date : 6 octobre 2025
-Version : 2.0 (JulesMotor)
+Version : 2.0
 Statut : ✅ Validé
 ═══════════════════════════════════════════════════════════════

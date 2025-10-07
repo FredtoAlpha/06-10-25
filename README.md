@@ -1,9 +1,9 @@
 # 🎓 Répartition Classes - Système de Gestion Scolaire
 
-[![Version](https://img.shields.io/badge/version-14.0-blue.svg)](https://github.com)
+[![Version](https://img.shields.io/badge/version-13.0-blue.svg)](https://github.com)
 [![Google Apps Script](https://img.shields.io/badge/Google%20Apps%20Script-Ready-green.svg)](https://script.google.com)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/status-Maintenu-success.svg)]()
+[![Status](https://img.shields.io/badge/status-Production%20Ready-success.svg)]()
 
 > Système complet de répartition automatique d'élèves en classes avec optimisation multi-critères, interface moderne et algorithmes avancés.
 
@@ -31,7 +31,7 @@
 - ✅ **Équilibrage des scores** (comportement, travail, participation)
 - ✅ **Contraintes** (associations, dissociations, mobilité)
 - ✅ **Options** (LV2, options facultatives)
-- ✅ **Optimisation** (algorithmes avancés JulesMotor)
+- ✅ **Optimisation** (algorithmes avancés JulesMOTOR)
 
 ### 🎬 Demo
 
@@ -69,28 +69,31 @@
   - Recherche et filtres rapides
   - Export Excel/PDF/Pronote
 
-### 🤖 JulesMotor (Nouveau moteur d'optimisation)
+### 🤖 JulesMOTOR (Nouveau moteur d'optimisation)
 
-Remplace Nirvana avec une architecture modulaire :
+Remplace l'ancienne architecture avec un moteur modulaire et performant :
 
 ```
 julesmotor/
+├── main.js           # Point d'entrée du moteur
 ├── core/
-│   └── JulesMotor.js      # Moteur principal
+│   ├── engine.js     # Coeur de l'algorithme de répartition
+│   └── state.js      # Gestion de l'état de la répartition
+├── constraints/
+│   ├── parity.js     # Équilibrage parité F/M
+│   ├── scores.js     # Équilibrage des scores
+│   └── groups.js     # Contraintes d'associations/dissociations
 ├── utils/
-│   ├── calculators.js   # Calculs métriques
-│   └── validators.js    # Validations contraintes
-├── algorithms/
-│   ├── ParityCorrector.js   # Équilibrage parité
-│   └── ScoresBalancer.js    # Équilibrage scores
+│   ├── calculators.js # Fonctions de calcul des métriques
+│   └── validators.js  # Validations des mouvements et swaps
 └── ui/
-    └── Orchestrator.js      # Interface utilisateur
+    └── orchestrator.js # Orchestration avec l'interface V2
 ```
 
 ### 💾 Backend robuste
 
-- Configuration centralisée (`core/Config.js`)
-- Gestion complète des élèves (`core/BackendV2.js`)
+- Configuration centralisée (Config.js)
+- Gestion complète des élèves (BackendV2.js)
 - Système de groupes flexible
 - Validation des contraintes
 - Gestion des erreurs standardisée
@@ -127,21 +130,34 @@ cd repartition-classes
 
 ### Étape 2 : Préparer les fichiers
 
-Le script `prepare_for_google_apps_script.bat` prépare automatiquement les fichiers pour l'importation, notamment en renommant les fichiers du moteur JulesMotor.
-
+#### Windows
 ```bash
-# Windows
+# Nettoyer et préparer automatiquement
 prepare_for_google_apps_script.bat
+```
+
+#### Linux/Mac
+```bash
+# À adapter selon votre environnement
+./prepare_for_google_apps_script.sh
 ```
 
 ### Étape 3 : Uploader dans Google Apps Script
 
 1. Ouvrir [Google Apps Script](https://script.google.com)
 2. Créer un nouveau projet
-3. Uploader les fichiers du répertoire `google_apps_script_ready/`
-4. Autoriser les permissions nécessaires
+3. Supprimer les fichiers Nirvana obsolètes (si migration)
+4. Uploader les fichiers dans l'ordre (voir [GUIDE_INSERTION](docs/GUIDE_INSERTION_GOOGLE_APPS_SCRIPT.md))
+5. Autoriser les permissions nécessaires
 
-**📖 Documentation complète** : [GUIDE_INSERTION_GOOGLE_APPS_SCRIPT.md](docs/GUIDE_INSERTION_GOOGLE_APPS_SCRIPT.md)
+### Étape 4 : Configuration
+
+1. Créer une feuille Google Sheets
+2. Importer la structure (Menu → Répartition Classes → Structure)
+3. Configurer les paramètres (Config.js)
+4. Tester avec des données fictives
+
+**📖 Documentation complète** : [GUIDE_INSTALLATION.md](docs/GUIDE_INSTALLATION.md)
 
 ---
 
@@ -152,54 +168,48 @@ prepare_for_google_apps_script.bat
 ```
 repartition-classes/
 │
-├── 📦 core/
-│   ├── Config.js
-│   ├── BackendV2.js
-│   ├── Menu.js
-│   ├── Utils.js
-│   └── Initialisation.js
+├── 🚀 google_apps_script_ready/   # Fichiers prêts pour déploiement
 │
-├── 🤖 julesmotor/
-│   ├── core/JulesMotor.js
+├── 🧠 julesmotor/                 # Moteur de répartition principal
+│   ├── main.js
+│   ├── core/
+│   ├── constraints/
 │   ├── utils/
-│   ├── algorithms/
 │   └── ui/
 │
-├── 🎨 ui/
-│   ├── InterfaceV2.html
-│   └── [autres interfaces...]
+├── 🎨 ui/                         # Composants de l'interface utilisateur
+│   └── InterfaceV2.html
 │
-├── 📚 docs/
-│   └── [documentation...]
+├── 🧪 tests/                     # Tests unitaires et d'intégration
+│   └── julesmotor/
 │
-└── 🧪 tests/
-    └── [tests...]
+├── 📚 docs/                       # Documentation du projet
+│
+└── 📄 appsscript.json             # Manifest Google Apps Script
 ```
 
 ### Architecture logicielle
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                  INTERFACE V2 (ui/)                 │
-│  (HTML/CSS/JS - Drag & Drop - Modes de vue)        │
+│                  INTERFACE V2 (ui/InterfaceV2.html) │
+│  (HTML/CSS/JS - App Object - Drag & Drop)           │
 └─────────────────────────────────────────────────────┘
                         │
-                        ↓
+                        ↓ (google.script.run)
 ┌─────────────────────────────────────────────────────┐
-│                   CORE (core/)                      │
-│ (Menu.js, BackendV2.js, Config.js, Utils.js)        │
-└─────────────────────────────────────────────────────┘
-                        │
-                        ↓
-┌─────────────────────────────────────────────────────┐
-│              JULESMOTOR ENGINE                      │
-│  (Orchestration des algorithmes d'optimisation)     │
+│                   JULESMOTOR ENGINE                 │
+│  (julesmotor/)                                      │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐         │
+│  │  CORE    │  │CONSTRAINTS│ │  UTILS   │         │
+│  │ (Engine) │  │  (Rules) │  │(Calculators)│         │
+│  └──────────┘  └──────────┘  └──────────┘         │
 └─────────────────────────────────────────────────────┘
                         │
                         ↓
 ┌─────────────────────────────────────────────────────┐
 │              GOOGLE SHEETS API                      │
-│         (Lecture/Écriture données)                  │
+│         (Lecture/Écriture des données)              │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -214,50 +224,177 @@ repartition-classes/
 | Document | Description |
 |----------|-------------|
 | [README_DEMARRAGE_RAPIDE.md](README_DEMARRAGE_RAPIDE.md) | 🚀 Guide de démarrage rapide |
-| [AUDIT_JULES.md](AUDIT_JULES.md) | 🔍 Audit complet du projet |
-| [docs/GUIDE_INSERTION_GOOGLE_APPS_SCRIPT.md](docs/GUIDE_INSERTION_GOOGLE_APPS_SCRIPT.md) | 📖 Guide d'installation |
-| [ARCHITECTURE_MODULAIRE.md](ARCHITECTURE_MODULAIRE.md) | 🏗️ Architecture logicielle |
+| [AUDIT_FINAL.md](AUDIT_FINAL.md) | 🔍 Audit complet du projet |
+| [GUIDE_INSERTION_GOOGLE_APPS_SCRIPT.md](docs/GUIDE_INSERTION_GOOGLE_APPS_SCRIPT.md) | 📖 Guide d'installation |
+| [ARCHITECTURE_MODULAIRE.md](docs/ARCHITECTURE_MODULAIRE.md) | 🏗️ Architecture logicielle |
+
+### Guides techniques
+
+- [MODULARISATION_RESUME.md](docs/MODULARISATION_RESUME.md) - Résumé de la modularisation
+- [GUIDE_MIGRATION.md](docs/GUIDE_MIGRATION.md) - Migration vers nouvelle version
+- [TEST_ARCHITECTURE.md](docs/TEST_ARCHITECTURE.md) - Tests et validation
+- [EXEMPLES_ARCHITECTURE.md](docs/EXEMPLES_ARCHITECTURE.md) - Exemples de code
+
+### Rapports
+
+- [RAPPORT_NETTOYAGE_INTERFACEV2.md](docs/RAPPORT_NETTOYAGE_INTERFACEV2.md) - Rapport nettoyage
+- [IMPROVEMENTS.md](IMPROVEMENTS.md) - Améliorations apportées
+- [AUDIT_REPORT.md](AUDIT_REPORT.md) - Audit technique
 
 ---
 
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues ! Suivez les conventions de commit pour participer.
+Les contributions sont les bienvenues ! Voici comment participer :
+
+### 1. Fork et clone
+
+```bash
+git clone https://github.com/votre-username/repartition-classes.git
+cd repartition-classes
+```
+
+### 2. Créer une branche
+
+```bash
+git checkout -b feature/ma-nouvelle-fonctionnalite
+```
+
+### 3. Commiter vos changements
+
+```bash
+git add .
+git commit -m "✨ Ajout de [fonctionnalité]"
+```
+
+### 4. Pusher et créer une Pull Request
+
+```bash
+git push origin feature/ma-nouvelle-fonctionnalite
+```
+
+### Conventions de commit
+
+- ✨ `:sparkles:` - Nouvelle fonctionnalité
+- 🐛 `:bug:` - Correction de bug
+- 📚 `:books:` - Documentation
+- ♻️ `:recycle:` - Refactoring
+- 🎨 `:art:` - Amélioration UI/UX
+- ⚡ `:zap:` - Performance
+- 🔒 `:lock:` - Sécurité
 
 ---
 
 ## 🔒 Sécurité
 
-Ce projet est conçu pour être utilisé avec des données fictives. **Ne commitez jamais de données réelles d'élèves.**
+### ⚠️ Avant d'uploader sur GitHub
+
+**IMPORTANT** : Ce repository ne contient **AUCUNE donnée réelle d'élèves**.
+
+- ✅ Mot de passe par défaut `admin123` (à changer en production)
+- ✅ Données de test fictives uniquement
+- ✅ `.gitignore` configuré pour exclure les données sensibles
+
+### 🛡️ Pour utiliser en production
+
+1. **Changer le mot de passe admin** dans Config.js
+2. **Ne PAS commiter** de données réelles d'élèves
+3. **Utiliser des variables d'environnement** pour les secrets
+4. **Activer les permissions** Google Apps Script minimales
+5. **Limiter l'accès** aux feuilles Google Sheets
+
+### 🔐 Données sensibles à NE JAMAIS commiter
+
+```
+❌ Fichiers avec noms/prénoms réels
+❌ Exports Excel/CSV avec données réelles
+❌ Logs contenant des informations personnelles
+❌ Credentials Google
+❌ Mots de passe de production
+```
+
+**Le `.gitignore` est configuré pour vous protéger.**
+
+---
+
+## 📊 Statistiques
+
+- **Langage principal** : JavaScript (Apps Script)
+- **Fichiers** : ~15 fichiers JS/HTML
+- **Documentation** : 10 fichiers MD
+- **Tests** : 1 fichier de test
 
 ---
 
 ## 🎓 Analyse par IA / Code Review
 
-Ce projet est optimisé pour l'analyse par IA.
+### Utilisation avec GPT Codex / Jules CLI
+
+Ce projet est **optimisé** pour l'analyse par IA :
+
+```bash
+# Jules CLI
+jules analyze .
+
+# GPT Codex
+codex review --path=.
+```
+
+**Points à analyser** :
+- ✅ Qualité du code (architecture modulaire)
+- ✅ Sécurité (pas de données sensibles)
+- ✅ Performance (moteur JulesMOTOR)
+- ✅ Documentation (complète et à jour)
+- ✅ Tests (tests unitaires pour le moteur)
 
 **Fichiers clés à reviewer** :
-1. `ui/InterfaceV2.html` - Interface principale
-2. `core/Config.js` - Configuration
-3. `core/BackendV2.js` - Backend
-4. `julesmotor/core/JulesMotor.js` - Moteur d'optimisation
+1. `InterfaceV2.html` - Interface principale modulaire (App object)
+2. `julesmotor/main.js` - Point d'entrée du moteur de répartition
+3. `julesmotor/core/engine.js` - Coeur de l'algorithme
+4. `appsscript.json` - Manifest de l'application
 
 ---
 
 ## 📄 License
 
-Ce projet est sous licence **MIT**.
+Ce projet est sous licence **MIT**. Voir [LICENSE](LICENSE) pour plus de détails.
 
 ---
 
 ## 👥 Auteurs
 
 - **Développement initial** : [Votre nom]
-- **Architecture JulesMotor** : Jules
+- **Architecture ClaudeMotor** : [Nom]
 - **Interface V2** : [Nom]
 
 ---
 
-**Version** : 14.0 (Refactorisation Jules)
+## 🙏 Remerciements
+
+- Google Apps Script pour la plateforme
+- Tailwind CSS pour le framework CSS
+- SortableJS pour le drag & drop
+- Chart.js pour les graphiques
+- La communauté open source
+
+---
+
+## 📧 Contact
+
+- **Issues** : [GitHub Issues](https://github.com/votre-username/repartition-classes/issues)
+- **Discussions** : [GitHub Discussions](https://github.com/votre-username/repartition-classes/discussions)
+- **Email** : votre-email@example.com
+
+---
+
+## 🌟 Stargazers
+
+Si ce projet vous a été utile, n'oubliez pas de mettre une ⭐ !
+
+[![Stargazers over time](https://starchart.cc/votre-username/repartition-classes.svg)](https://starchart.cc/votre-username/repartition-classes)
+
+---
+
+**Version** : 13.0 (Production Ready)
 **Dernière mise à jour** : 6 octobre 2025
 **Statut** : ✅ Actif et maintenu

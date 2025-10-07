@@ -1,6 +1,6 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════
- *                           🚀 JULESMOTOR ENGINE
+ *                           🚀 CLAUDEMOTOR ENGINE
  * ═══════════════════════════════════════════════════════════════════════
  *
  * Moteur de répartition intelligent pour l'équilibrage des classes
@@ -15,7 +15,7 @@
 
 'use strict';
 
-const JulesMotor = (function(global) {
+const ClaudeMotor = (function(global) {
 
   // ═══════════════════════════════════════════════════════════════════════
   // CONFIGURATION GLOBALE
@@ -23,7 +23,7 @@ const JulesMotor = (function(global) {
 
   const CONFIG = {
     VERSION: '2.0.0',
-    ENGINE_NAME: 'JulesMotor',
+    ENGINE_NAME: 'ClaudeMotor',
 
     // Critères de répartition
     CRITERES: ['COM', 'TRA', 'PART', 'ABS'],
@@ -91,7 +91,7 @@ const JulesMotor = (function(global) {
   // ═══════════════════════════════════════════════════════════════════════
 
   /**
-   * Moteur principal JulesMotor
+   * Moteur principal ClaudeMotor
    */
   class Engine {
     constructor(config = {}) {
@@ -111,7 +111,7 @@ const JulesMotor = (function(global) {
     run(dataContext, options = {}) {
       this.startTime = Date.now();
       Logger.log('\n' + '═'.repeat(80));
-      Logger.log(`🚀 JULESMOTOR ENGINE v${this.config.VERSION} - DÉMARRAGE`);
+      Logger.log(`🚀 CLAUDEMOTOR ENGINE v${this.config.VERSION} - DÉMARRAGE`);
       Logger.log('═'.repeat(80));
 
       try {
@@ -152,7 +152,7 @@ const JulesMotor = (function(global) {
         const results = this._compileResults(state, phase1Result, phase2Result, phase3Result);
 
         Logger.log('\n' + '═'.repeat(80));
-        Logger.success(`JULESMOTOR ENGINE - TERMINÉ EN ${results.durationMs}ms`);
+        Logger.success(`CLAUDEMOTOR ENGINE - TERMINÉ EN ${results.durationMs}ms`);
         Logger.log(`📊 Score: ${this.metrics.scoreInitial.toFixed(2)} → ${this.metrics.scoreFinal.toFixed(2)}`);
         Logger.log(`🔄 Total échanges: ${results.totalSwaps}`);
         Logger.log('═'.repeat(80) + '\n');
@@ -160,7 +160,7 @@ const JulesMotor = (function(global) {
         return results;
 
       } catch (error) {
-        Logger.critical(`Erreur fatale dans JulesMotor: ${error.message}`);
+        Logger.critical(`Erreur fatale dans ClaudeMotor: ${error.message}`);
         Logger.error(error.stack);
         throw error;
       }
@@ -171,16 +171,16 @@ const JulesMotor = (function(global) {
      */
     _validateContext(dataContext) {
       if (!dataContext || typeof dataContext !== 'object') {
-        throw new Error('JulesMotor: contexte de données invalide');
+        throw new Error('ClaudeMotor: contexte de données invalide');
       }
 
       if (!dataContext.classesState || typeof dataContext.classesState !== 'object') {
-        throw new Error('JulesMotor: classesState manquant dans le contexte');
+        throw new Error('ClaudeMotor: classesState manquant dans le contexte');
       }
 
       const classes = Object.keys(dataContext.classesState);
       if (classes.length === 0) {
-        throw new Error('JulesMotor: aucune classe détectée');
+        throw new Error('ClaudeMotor: aucune classe détectée');
       }
 
       Logger.info(`${classes.length} classe(s) détectée(s): ${classes.join(', ')}`);
@@ -329,9 +329,9 @@ const JulesMotor = (function(global) {
   };
 
   // Export global
-  global.JulesMotor = API;
+  global.ClaudeMotor = API;
 
-  Logger.log(`✅ JulesMotor Engine v${CONFIG.VERSION} chargé`);
+  Logger.log(`✅ ClaudeMotor Engine v${CONFIG.VERSION} chargé`);
 
   return API;
 
